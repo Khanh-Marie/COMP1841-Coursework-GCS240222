@@ -29,7 +29,7 @@ function getModule($pdo, $id){
     return $query->fetch();
 }
 
-function updatePost($pdo, $postId, $post_title, $user_id, $module_id) {
+function updatePost($pdo, $postid, $post_title, $user_id, $module_id) {
     $query = 'UPDATE post 
               SET post_title = :post_title, 
                   user_id = :user_id, 
@@ -40,7 +40,7 @@ function updatePost($pdo, $postId, $post_title, $user_id, $module_id) {
         ':post_title' => $post_title, 
         ':user_id' => $user_id,
         ':module_id' => $module_id,
-        ':post_id' => $postId
+        ':post_id' => $postid
     ];
     
     query($pdo, $query, $parameters);
@@ -93,6 +93,25 @@ function insertPost($pdo, $post_title, $user_id, $module_id, $image) {
     return $stmt->execute();
 }
 
+function insertUser($pdo, $user_name, $user_email){
+    $sql = 'INSERT INTO user (user_name, user_email) VALUES (:user_name, :user_email)';
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(':user_name', $user_name);
+    $stmt->bindValue(':user_email', $user_email);
+
+    return $stmt->execute();
+}
+
+function insertModule($pdo, $module_name){
+    $sql = 'INSERT INTO module (module_name) VALUES (:module_name)';
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(':module_name', $module_name);
+
+    return $stmt->execute();
+}
+
 function allUsers($pdo){
     $users = query($pdo, 'SELECT * FROM user');
     return $users->fetchAll();
@@ -108,4 +127,24 @@ function allPosts($pdo){
     INNER JOIN user ON user_id = user.id
     INNER JOIN module ON module_id = module.id');
     return $posts->fetchAll();
+}
+
+function addEmail($pdo, $mailtext, $userid) {
+    $stmt = $pdo->prepare('INSERT INTO mail (mailtext, date, userid) VALUES (:mailtext, CURDATE(), :userid)');
+    $stmt->execute(['mailtext' => $mailtext, 'userid' => $userid]);
+}
+
+function allEmails($pdo) {
+    $mails = query($pdo, 'SELECT mail.id AS id, mailtext, date, userid, user.user_name as username FROM mail
+    INNER JOIN user ON mail.userid = user.id');
+    return $mails->fetchAll();
+}
+function getMail($pdo, $id) {
+    $parameters = [':id' => $id];
+    $query = query($pdo, 'SELECT * FROM mail WHERE id = :id', $parameters);
+    return $query->fetch();
+}
+function deleteMail($pdo, $id){
+    $parameters = [':id' => $id];
+    query($pdo, 'DELETE FROM mail WHERE id = :id', $parameters);
 }

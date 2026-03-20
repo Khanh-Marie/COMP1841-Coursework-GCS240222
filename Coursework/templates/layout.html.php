@@ -14,9 +14,11 @@
             <ul>
                 <li><a href="index.php">Home</a></li>
                 <li><a href="post.php">Post</a></li>
-                <li><a href="user.php">User List</a></li>
-                <li><a href="module.php">Module List</a></li>
                 <li><a href="addpost.php">Add a new post</a></li>
+                <li><a href="user.php">User List</a></li>
+                <li><a href="adduser.php">Add a new user</li>
+                <li><a href="module.php">Module List</a></li>
+                <li><a href="addmodule.php">Add a new module</li>
                 <li><a href="contact.php">Contact Us</a></li>
                 <li><a href="admin/login/Login.html">Admin Login</a></li>
             </ul>
