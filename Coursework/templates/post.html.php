@@ -13,7 +13,7 @@
         <th>Title</th>
         <th>Image</th>
         <th>Date</th>
-        <th>Actions</th>
+        <th>Edit</th>
     </tr>
     <?php foreach($posts as $post): ?>
     <tr>

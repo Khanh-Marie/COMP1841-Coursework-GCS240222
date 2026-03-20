@@ -14,10 +14,13 @@
         Manage posts, modules and users</h1></header>
         <nav>
             <ul>
-                <li><a href="post.php">Post</a></li>
-                <li><a href="user.php">User List</a></li>
-                <li><a href="module.php">Module List</a></li>
+                <li><a href="post.php">Post List</a></li>
                 <li><a href="addpost.php">Add a new post</a></li>
+                <li><a href="user.php">User List</a></li>
+                <li><a href="adduser.php">Add a new user</li>
+                <li><a href="module.php">Module List</a></li>
+                <li><a href="addmodule.php">Add a new module</li>
+                <li><a href="mailbox.php">Mail Box</a></li>
                 <li><a href="login/Logout.php">Public Site/Logout</a></li>
             </ul>
         </nav>
